@@ -1,0 +1,40 @@
+ Lab 1 in the course TNM108 - Machine Learning for Social Media at Linköpings University 2022
+ Anna Jonsson and Amanda Bigelius
+
+---- PART 1 ----
+
+ 1. What are the relevant features of the Titanic dataset? Why are they relevant?
+    
+    The dataset contains information about the passengers on the Titanic. 
+    The information can be used to compare the passengers and see which ones had a higher chance of surviving.
+    The relevant features are the age, sex, ticket class, and if they survived or not. 
+    As well as amount of siblings and spouses or parents and children onboard the titanic, 
+    the passengers ticket number and fare, cabin number, and port of embarkation.
+
+ 2. Can you find a parameter configuration to get a validation score greater than 62%?
+
+    No, we cannot get a validation score greater than 62% with the parameters we have tried.
+    We have tried the elkan algorithm and different values on max_iter.
+
+    The validation score is 62.6%
+
+ 3. What are the advantages/ disadvantages of K-Means clustering?
+
+    Advantages: 
+   + Easy to implement.
+   + Scales to large data sets.
+   + Faster than hierarchical clustering.
+   
+   Disadvantages:
+   - Requires the number of clusters to be known or pre-specified.
+   - Sensitive to outliers, results can change with the ordering of the data.
+   - Only works when triggered, can result in different results for different runs.        ?Vad menas med detta?
+   - Requires quite large amount of memory to store the data.
+   - Each request has to identify the local model from scratch. 
+
+
+ 4. How can you address the weaknesses?
+
+    - Before specifying the number of clusters, you could look at the data points and try to find a natural number of clusters.
+    - Take a look at the outliers and see if they can be removed or if they should be included in the clusters.
+
