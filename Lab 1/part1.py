@@ -17,40 +17,40 @@ test_url = 'http://s3.amazonaws.com/assets.datacamp.com/course/Kaggle/test.csv'
 test = pd.read_csv(test_url)
 
 # --- Preview data, printing the loaded datasets ---
-# print("\n")
-# print("***** Train_Set *****") 
+# print('\n')
+# print('***** Train_Set *****') 
 # print(train.head()) 
 
 # Initial statistics from both DataFrames, using the method 'descibe' from panda
-# print("\n")
-# print("***** Statistics *****") 
+# print('\n')
+# print('***** Statistics *****') 
 # print(train.describe()) 
 
-# print("\n") 
-# print("***** Test_Set *****") 
+# print('\n') 
+# print('***** Test_Set *****') 
 # print(test.head())
 
-# print("\n")
-# print("***** Dataset features *****") 
+# print('\n')
+# print('***** Dataset features *****') 
 # print(train.columns.values) 
 
 
 # --- Missing values in data ---
-# print("\n")
-# print("***** Missing values in train set *****") 
+# print('\n')
+# print('***** Missing values in train set *****') 
 # train.isna().head()
 
-# print("\n")
-# print("***** Missing values in test set *****") 
+# print('\n')
+# print('***** Missing values in test set *****') 
 # test.isna().head()
 
-# print("*****Total number of missing values in the train set*****")
+# print('*****Total number of missing values in the train set*****')
 # print(train.isna().sum())
-# print("\n")
+# print('\n')
 
-# print("*****Total number of missing values in the test set*****")
+# print('*****Total number of missing values in the test set*****')
 # print(test.isna().sum())
-# print("\n")	
+# print('\n')	
 
 
 # --- Handle missing values with Mean Imputation ---
@@ -61,12 +61,12 @@ test.fillna(test.mean(numeric_only=True), inplace=True)
 
 # numeric_only=True, to only get the numeric columns in train.mean() and test.mean(). FutureWarning
 
-# print("\n")
-# print("***** Check for any reminding missing values in train set *****")
+# print('\n')
+# print('***** Check for any reminding missing values in train set *****')
 # print(train.isna().sum())
 
-# print("\n")
-# print("***** Check for any reminding missing values in test set *****")
+# print('\n')
+# print('***** Check for any reminding missing values in test set *****')
 # print(test.isna().sum())
 
 
@@ -75,10 +75,10 @@ test.fillna(test.mean(numeric_only=True), inplace=True)
 train[['Pclass', 'Survived']].groupby(['Pclass'],as_index=False).mean().sort_values(by='Survived', ascending=False)
 
 # Survival count with respect to sex
-train[["Sex", "Survived"]].groupby(['Sex'], as_index=False).mean().sort_values(by='Survived', ascending=False)
+train[['Sex', 'Survived']].groupby(['Sex'], as_index=False).mean().sort_values(by='Survived', ascending=False)
 
 # Survival count with respect to SibSp
-train[["SibSp", "Survived"]].groupby(['SibSp'], as_index=False).mean().sort_values(by='Survived', ascending=False)
+train[['SibSp', 'Survived']].groupby(['SibSp'], as_index=False).mean().sort_values(by='Survived', ascending=False)
 
 # --- Plot graphs ---
 # Age vs. Survived
@@ -94,8 +94,8 @@ train[["SibSp", "Survived"]].groupby(['SibSp'], as_index=False).mean().sort_valu
 
 
 # --- Build KMeans model ---
-# print("\n")
-# print("***** Data types of different features in train set *****")
+# print('\n')
+# print('***** Data types of different features in train set *****')
 # train.info()
 
 # Feature engineering, drop insignificant features from the the datasets
@@ -109,21 +109,21 @@ labelEncoder.fit(test['Sex'])
 train['Sex'] = labelEncoder.transform(train['Sex']) 
 test['Sex'] = labelEncoder.transform(test['Sex'])
 
-# print("\n")
-# print("***** Sex should now be numeric in both sets *****")
-# print("\n")
-# print("***** Train set *****")
+# print('\n')
+# print('***** Sex should now be numeric in both sets *****')
+# print('\n')
+# print('***** Train set *****')
 # train.info()
-# print("\n")
-# print("***** Test set *****")
+# print('\n')
+# print('***** Test set *****')
 # test.info()
 
 # Drop the survival column from the data
 x = np.array(train.drop(['Survived'], 1).astype(float)) 
 y = np.array(train['Survived'])
 
-# print("\n")
-# print("***** Survived column should be dropped from train set *****") # Doesn't work
+# print('\n')
+# print('***** Survived column should be dropped from train set *****') # Doesn't work
 # train.info()
 
 # Cluster the passenger records into 2 clusters: Survived and Not Survived
@@ -140,8 +140,8 @@ y = np.array(train['Survived'])
 #     if prediction[0] == y[i]:
 #         correct += 1
 
-# print("\n")
-# print("***** Validation score 1: *****")
+# print('\n')
+# print('***** Validation score 1: *****')
 # print(correct/len(x))
 
 # kmeans = KMeans(n_clusters=2, max_iter=600, algorithm = 'lloyd')
@@ -155,8 +155,8 @@ y = np.array(train['Survived'])
 #     if prediction[0] == y[i]:
 #         correct += 1
 
-# print("\n")
-# print("***** Validation score 2: *****")
+# print('\n')
+# print('***** Validation score 2: *****')
 # print(correct/len(x))
 
 # # --- Scale the values of the features to the same range ---
@@ -175,9 +175,9 @@ for i in range(len(x)):
     if prediction[0] == y[i]:
         correct += 1
 
-print("\n")
-print("***** Validation score 3: *****")
+print('\n')
+print('***** Validation score 3: *****')
 print(correct/len(x))
-print("\n")
+print('\n')
 
 # WRONG VALUES
