@@ -7,9 +7,12 @@
     
     The dataset contains information about the passengers on the Titanic. 
     The information can be used to compare the passengers and see which ones had a higher chance of surviving.
-    The relevant features are the age, sex, ticket class, and if they survived or not. 
-    As well as amount of siblings and spouses or parents and children onboard the titanic, 
+    
+    The most relevant features are the age, sex, ticket class, and if they survived or not. 
+    
+    The data also contains the amount of siblings and spouses or parents and children onboard the titanic, 
     the passengers ticket number and fare, cabin number, and port of embarkation.
+
 
  2. Can you find a parameter configuration to get a validation score greater than 62%?
 
@@ -17,6 +20,7 @@
     We have tried the elkan algorithm and different values on max_iter.
 
     The validation score is 62.6%
+
 
  3. What are the advantages/ disadvantages of K-Means clustering?
 
@@ -28,7 +32,7 @@
    Disadvantages:
    - Requires the number of clusters to be known or pre-specified.
    - Sensitive to outliers, results can change with the ordering of the data.
-   - Only works when triggered, can result in different results for different runs.        ?Vad menas med detta?
+   - Only works when triggered, can result in different results for different runs.
    - Requires quite large amount of memory to store the data.
    - Each request has to identify the local model from scratch. 
 

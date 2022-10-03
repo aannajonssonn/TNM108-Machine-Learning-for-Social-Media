@@ -17,40 +17,40 @@ test_url = 'http://s3.amazonaws.com/assets.datacamp.com/course/Kaggle/test.csv'
 test = pd.read_csv(test_url)
 
 # --- Preview data, printing the loaded datasets ---
-# print('\n')
-# print('***** Train_Set *****') 
-# print(train.head()) 
+print('\n')
+print('***** Train_Set *****') 
+print(train.head()) 
 
 # Initial statistics from both DataFrames, using the method 'descibe' from panda
-# print('\n')
-# print('***** Statistics *****') 
-# print(train.describe()) 
+print('\n')
+print('***** Statistics *****') 
+print(train.describe()) 
 
-# print('\n') 
-# print('***** Test_Set *****') 
-# print(test.head())
+print('\n') 
+print('***** Test_Set *****') 
+print(test.head())
 
-# print('\n')
-# print('***** Dataset features *****') 
-# print(train.columns.values) 
+print('\n')
+print('***** Dataset features *****') 
+print(train.columns.values) 
 
 
 # --- Missing values in data ---
-# print('\n')
-# print('***** Missing values in train set *****') 
-# train.isna().head()
+print('\n')
+print('***** Missing values in train set *****') 
+train.isna().head()
 
-# print('\n')
-# print('***** Missing values in test set *****') 
-# test.isna().head()
+print('\n')
+print('***** Missing values in test set *****') 
+test.isna().head()
 
-# print('*****Total number of missing values in the train set*****')
-# print(train.isna().sum())
-# print('\n')
+print('*****Total number of missing values in the train set*****')
+print(train.isna().sum())
+print('\n')
 
-# print('*****Total number of missing values in the test set*****')
-# print(test.isna().sum())
-# print('\n')	
+print('*****Total number of missing values in the test set*****')
+print(test.isna().sum())
+print('\n')	
 
 
 # --- Handle missing values with Mean Imputation ---
@@ -61,42 +61,42 @@ test.fillna(test.mean(numeric_only=True), inplace=True)
 
 # numeric_only=True, to only get the numeric columns in train.mean() and test.mean(). FutureWarning
 
-# print('\n')
-# print('***** Check for any reminding missing values in train set *****')
-# print(train.isna().sum())
+print('\n')
+print('***** Check for any reminding missing values in train set *****')
+print(train.isna().sum())
 
-# print('\n')
-# print('***** Check for any reminding missing values in test set *****')
-# print(test.isna().sum())
+print('\n')
+print('***** Check for any reminding missing values in test set *****')
+print(test.isna().sum())
 
 
 # --- Handle categorical data ---
-# Survival count with respect to Pclass
+# Sort survival count with respect to Pclass
 train[['Pclass', 'Survived']].groupby(['Pclass'],as_index=False).mean().sort_values(by='Survived', ascending=False)
 
-# Survival count with respect to sex
+# Sort survival count with respect to sex
 train[['Sex', 'Survived']].groupby(['Sex'], as_index=False).mean().sort_values(by='Survived', ascending=False)
 
-# Survival count with respect to SibSp
+# Sort survival count with respect to SibSp
 train[['SibSp', 'Survived']].groupby(['SibSp'], as_index=False).mean().sort_values(by='Survived', ascending=False)
 
-# --- Plot graphs ---
+# # --- Plot graphs ---
 # Age vs. Survived
-# g = sns.FacetGrid(train, col='Survived')
-# g.map(plt.hist, 'Age', bins=20)
-# plt.show()
+g = sns.FacetGrid(train, col='Survived')
+g.map(plt.hist, 'Age', bins=20)
+plt.show()
 
 # Pclass vs. Survived
-# grid = sns.FacetGrid(train, col='Survived', row='Pclass', aspect=1.6)
-# grid.map(plt.hist, 'Age', alpha=.5, bins=20)
-# grid.add_legend()
-# plt.show()
+grid = sns.FacetGrid(train, col='Survived', row='Pclass', aspect=1.6)
+grid.map(plt.hist, 'Age', alpha=.5, bins=20)
+grid.add_legend()
+plt.show()
 
 
 # --- Build KMeans model ---
-# print('\n')
-# print('***** Data types of different features in train set *****')
-# train.info()
+print('\n')
+print('***** Data types of different features in train set *****')
+train.info()
 
 # Feature engineering, drop insignificant features from the the datasets
 train = train.drop(['Name','Ticket', 'Cabin','Embarked'], axis=1) 
@@ -109,29 +109,28 @@ labelEncoder.fit(test['Sex'])
 train['Sex'] = labelEncoder.transform(train['Sex']) 
 test['Sex'] = labelEncoder.transform(test['Sex'])
 
-# print('\n')
-# print('***** Sex should now be numeric in both sets *****')
-# print('\n')
-# print('***** Train set *****')
-# train.info()
-# print('\n')
-# print('***** Test set *****')
-# test.info()
+print('\n')
+print('***** Sex should now be numeric in both sets *****')
+print('***** Train set *****')
+train.info()
+print('\n')
+print('***** Test set *****')
+test.info()
 
 # Drop the survival column from the data
 x = np.array(train.drop(['Survived'], 1).astype(float)) 
 y = np.array(train['Survived'])
 
-# print('\n')
-# print('***** Survived column should be dropped from train set *****') # Doesn't work
-# train.info()
+print('\n')
+print('***** Survived column should be dropped from train set *****') # Doesn't work
+train.info()
 
-# Cluster the passenger records into 2 clusters: Survived and Not Survived
+# # Cluster the passenger records into 2 clusters: Survived and Not Survived
 # kmeans = KMeans(n_clusters=2)
 # kmeans.fit(x)
 # KMeans(algorithm = 'lloyd', copy_x = True, init = 'k-means++', max_iter = 300, n_clusters = 2, n_init = 10,  random_state = None, tol = 0.0001, verbose = 0)
 
-# # View percentage of passenger records that were correctly clustered
+# # # View percentage of passenger records that were correctly clustered
 # correct = 0
 # for i in range(len(x)):
 #     predict_me = np.array(x[i].astype(float))
@@ -159,7 +158,7 @@ y = np.array(train['Survived'])
 # print('***** Validation score 2: *****')
 # print(correct/len(x))
 
-# # --- Scale the values of the features to the same range ---
+# --- Scale the values of the features to the same range ---
 kmeans = KMeans(n_clusters=2, max_iter=600, algorithm = 'lloyd')
 scaler = MinMaxScaler()
 x_scaled = scaler.fit_transform(x)
@@ -179,5 +178,3 @@ print('\n')
 print('***** Validation score 3: *****')
 print(correct/len(x))
 print('\n')
-
-# WRONG VALUES

@@ -11,7 +11,7 @@
     Done.
 
 3. What can you conclude by looking at the plot?
-    The axises represent the annual income ($k) and the spending score (1-100).
+    The x-axis represent the annual income ($k) and the y-axis the spending score (1-100).
     The middle income class is most consistent with their spending, and their spending score is about 40-60.
 
     The higher income class have two different groups, one that spends alot (60-90), and one that spends less (0-40). 
