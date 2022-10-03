@@ -1,5 +1,7 @@
-Lab 1 in the course TNM108 - Machine Learning for Social Media at Linköpings University 2022
-Anna Jonsson and Amanda Bigelius
+ Lab 1 in the course TNM108 - Machine Learning for Social Media at Linköpings University 2022
+ Anna Jonsson and Amanda Bigelius
+
+---- PART 2 ----
 
 1. How many clusters do you have? Explain your answer.
     We have five clusters. 

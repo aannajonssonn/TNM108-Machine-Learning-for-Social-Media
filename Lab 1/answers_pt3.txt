@@ -1,0 +1,29 @@
+ Lab 1 in the course TNM108 - Machine Learning for Social Media at Linköpings University 2022
+ Anna Jonsson and Amanda Bigelius
+
+---- PART 3 ----
+
+1. Can you choose n_components=2? Can you think of some method to test this?
+
+    Yes. 
+    We order the variables by their variance, and pick the two with the highest variance. 
+    This can be done with pythons own variance function.
+    Variance Ratio:  [0.60950217 0.2611802  0.12931763]
+    Which gives us that the two variables with highest variance makes up about 86% of the total variance.
+    
+
+2. Create the scatter plot of the third principal component (that is, you combine the third
+principal component with the first and then the second principal component). What can
+you see with the plot? What is the difference?
+
+    The axis is now longer (20,20) and some points have more extreme values, making them easier to make out. 
+
+
+3. Can you tell which feature contribute more towards the 1st PC?
+
+    Mean concave points 
+    Mean concavity
+    Worst concave points
+
+    	
+        
