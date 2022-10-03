@@ -1,0 +1,22 @@
+Lab 2 in the course TNM108 - Machine Learning for Social Media at Linköpings University 2022
+ Anna Jonsson and Amanda Bigelius
+
+---- PART 1 ----
+
+1. When can you use linear regression?
+    When trying to describe linear relationships between two or more variables, where one is dependent on all the other variable(s).
+
+    We assume that
+
+2. How can you generalize linear regression models to account for more complex relationships
+among the data?
+
+    
+
+3. What are the basis functions?
+
+
+4. How many basis functions can you use in the same regression model?
+
+
+5. Can overfitting be a problem? And if so, what can you do about it?

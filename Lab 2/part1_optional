@@ -1,0 +1,84 @@
+# Lab 2 in the course TNM108 - Machine Learning for Social Media at Linköpings University 2022
+# Anna Jonsson and Amanda Bigelius
+
+# Case Study: Predicting Bicycle Traffic (OPTIONAL PART)
+
+# Dependencies
+from os import plock
+from statistics import LinearRegression
+import pandas as pd
+import matplotlib.pyplot as plt
+counts = pd.read_csv('FreemontBridge.csv', index_col='Date', parse_dates=True)
+weather = pd.read_csv('BicycleWeather.csv', index_col='DATE', parse_dates=True)
+
+# Compute the total number of bicycles crossing the bridge each day
+daily = counts.resample('d').sum()
+daily['Total'] = daily.sum(axis=1)
+daily = daily[['Total']] # remove other columns
+
+# Add binary columns that indicate the day of the week
+days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+for i in range(7):
+    daily[days[i]] = (daily.index.dayofweek == i).astype(float)
+
+# Add indicator for holidays
+from pandas.tseries.holiday import USFederalHolidayCalendar
+cal = USFederalHolidayCalendar()
+holidays = cal.holidays('2012', '2016')
+daily = daily.join(pd.Series(1, index=holidays, name='holiday'))
+daily['holiday'].fillna(0, inplace=True)
+
+# Add daylight hours
+def hours_of_daylight(date, axis=23.44, latitude = 47.61):
+    # """Compute the hours of daylight for the given date"""
+    days = (date - pd.datetime(2000,12,21)).days
+    m = (1. - np.tan(np.radians(latitude)) * np.tan(np.radians(axis) * np.cos(days * 2 * np.pi / 365.25)))
+    return 24. * np.degrees(np.arccos(1 - np.clip(m, 0, 2))) / 180.
+
+daily['daylight_hrs'] = list(map(hours_of_daylight, daily.index))
+daily['daylight_hrs'].plot()
+plt.ylim(8, 17)
+plt.show()
+
+# Add columns with temperature, precipitation, and snowfall
+# Temperatures are in 1/10 degrees C; convert to C
+weather['TMIN'] /= 10
+weather['TMAX'] /= 10
+weather['Temp (C)'] = 0.5 * (weather['TMIN'] + weather['TMAX'])
+# Precip is in 1/10 mm; convert to inches
+weather['PRCP'] /= 254
+weather['dry day'] = (weather['PRCP'] == 0).astype(int)
+daily = daily.join(weather['PRCP', 'Temp (C)', 'dry day'])
+
+# Add counter for day, and years.
+# Lets us measure any observed annual increase or decrease in daily crossings
+daily['annual'] = (daily.index - daily.index[0]).days / 365.
+
+# Look at data
+daily.head()
+
+# Drop rows with null values
+daily.dropna(axis=0, how='any', inplace=True)
+column_names = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun', 'holiday', 'daylight_hrs', 'PRCP', 'dry day', 'Temp (C)', 'annual']
+X = daily[column_names]
+y = daily['Total']
+model = LinearRegression(fit_intercept=False)
+model.fit(X, y)
+daily['predicted'] = model.predict(X)
+
+# Compare the total and predicted bicycle traffic visually
+daily[['Total', 'predicted']].plot(alpha=0.5)
+plt.show()
+
+# Look at the model coefficients to estimate how much each feature contributes to the daily bicycle count
+params = pd.Series(model.coef_, index=X.columns)
+params
+
+# Compute uncertainties, bootstrap resampling
+from sklearn.utils import resample
+np.random.seed(1)
+err = np.std([model.fit(*resample(X, y)).coef_ for i in range(1000)], 0)
+
+# Look at result with errors estimated
+print(pd.DataFrame({'effect': params.round(0), 'error': err.round(0)}))
+
