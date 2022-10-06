@@ -40,9 +40,9 @@ print('\n Model intercept:', model.intercept_)
 print('\n Model slope: ', model.coef_)
 
 # Polynomial Regression
-# xn = fn(x) where x is our single-dimensional input.
-# y = a0 + a1f1(x) + a2f2(x) + a3f3(x) + ...
-# y = a0 + a1x + a2x^2 + a3x^3 + ...
+# x^n = fn(x) where x is our single-dimensional input.
+# y = a0 + a1f1(x) + a2f2(x) + a3f3(x) + ... + anfn(x)
+# y = a0 + a1x + a2x^2 + a3x^3 + ... + anx^n
 
 from sklearn.preprocessing import PolynomialFeatures
 x = np.array([2, 3, 4])
@@ -69,7 +69,7 @@ from sklearn.base import BaseEstimator, TransformerMixin
 
 class GaussianFeatures(BaseEstimator, TransformerMixin):
 
-# """Uniformly spaced Gaussian features for one-dimensional input"""
+   # """Uniformly spaced Gaussian features for one-dimensional input"""
 
     def __init__(self, N, width_factor=2.0):
         self.N = N
@@ -89,14 +89,16 @@ class GaussianFeatures(BaseEstimator, TransformerMixin):
     def transform(self, X):
         return self._gauss_basis(X[:, :, np.newaxis], self.centers_, self.width_, axis=1)
 
-    gauss_model = make_pipeline(GaussianFeatures(20), LinearRegression())
-    gauss_model.fit(x[:, np.newaxis], y)
-    yfit = gauss_model.predict(xfit[:, np.newaxis])
 
-    plt.scatter(x, y)
-    plt.plot(xfit, yfit)
-    plt.xlim(0, 10);
-    plt.show()
+gauss_model = make_pipeline(GaussianFeatures(20), LinearRegression())
+gauss_model.fit(x[:, np.newaxis], y)
+yfit = gauss_model.predict(xfit[:, np.newaxis])
+
+plt.scatter(x, y)
+plt.plot(xfit, yfit)
+plt.xlim(0, 10);
+plt.show()
+
 
 # Regularization
 model = make_pipeline(GaussianFeatures(30), LinearRegression())
@@ -117,11 +119,9 @@ def basis_plot(model, title=None):
     if title:
         ax[0].set_title(title)
 
-    ax[1].plot(model.steps[0][1].centers_,
-               model.steps[1][1].coef_)
-    ax[1].set(xlabel='basis location',
-              ylabel='coefficient',
-              xlim=(0, 10))
+    ax[1].plot(model.steps[0][1].centers_, model.steps[1][1].coef_)
+    ax[1].set(xlabel='basis location', ylabel='coefficient', xlim=(0, 10))
+    plt.show()
 
 model = make_pipeline(GaussianFeatures(30), LinearRegression())
 basis_plot(model)
@@ -140,5 +140,3 @@ basis_plot(model, title='Ridge Regression')
 from sklearn.linear_model import Lasso
 model = make_pipeline(GaussianFeatures(30), Lasso(alpha=0.001))
 basis_plot(model, title='Lasso Regression')
-
-

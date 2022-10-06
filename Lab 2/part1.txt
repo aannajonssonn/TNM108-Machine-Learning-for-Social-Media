@@ -6,17 +6,50 @@ Lab 2 in the course TNM108 - Machine Learning for Social Media at Linköpings Un
 1. When can you use linear regression?
     When trying to describe linear relationships between two or more variables, where one is dependent on all the other variable(s).
 
-    We assume that
+    Assumptions of the linear regression:
+    1. The relationship between variable X and Y is linear. 
+    2. One variable must dependend on other independent variables. (Måste den vara direkt beroende?)
+       The amount of bicycles depend on the weather, day, light, etc.
+    3. The variance of the variables should be the same for all values of the dependent variable. 
+    4. The observations are independent on the models.
+
 
 2. How can you generalize linear regression models to account for more complex relationships
 among the data?
-
+    By using a basis function, that then converts the data to a higher dimension.
     
 
 3. What are the basis functions?
+    The basis function, f(x), helps us to transform the one-dimensional x-values, and then convert them to a higher dimension.
+    This makes it possible to find a linear fit between x and y, when they have a more complex relationship.
+
+    Multidimensional Linear Model
+    y = a0 + a1f1(x) + a2f2(x) + a3f3(x) + ... + anfn(x)
+
+    Polynomial Linear Model
+    x^n = fn(x), where x is our single-dimensional input.
+    y = a0 + a1x + a2x^2 + a3x^3 + ... + anx^n
+
+    Gaussian Basis Function
+    Sum of trigonometrical functions.
 
 
 4. How many basis functions can you use in the same regression model?
-
+    Technically, how many we want to.
+    But we should only use one type of basis function.
+    But more than the amount of input variables is unneccessary and can lead to overfitting.
+    e.g. input = [x1, x2, x3] => x^4 (if xn = fn(x) = x^n)
 
 5. Can overfitting be a problem? And if so, what can you do about it?
+    Yes, the overfitting can be a problem as it makes the model non-generalized. 
+    To solve this we can add a penalty, known as regularization, to the large values of the model parameters.
+
+    Ridge regression (L2 regularization)
+    P = alpha*sum(theta_n^2)
+
+    where alpha is a free parameter that controls the strenght of the penalty, and should be determined by cross-validation.
+          theta is the magnitude of the coefficient.
+
+    Lasso regression (L1 regularization)
+    P = alpha*sum(abs(theta_n))
+

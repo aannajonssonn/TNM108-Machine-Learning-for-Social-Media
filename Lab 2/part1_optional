@@ -4,12 +4,13 @@
 # Case Study: Predicting Bicycle Traffic (OPTIONAL PART)
 
 # Dependencies
-from os import plock
 from statistics import LinearRegression
 import pandas as pd
+import datetime as dt
 import matplotlib.pyplot as plt
-counts = pd.read_csv('FreemontBridge.csv', index_col='Date', parse_dates=True)
-weather = pd.read_csv('BicycleWeather.csv', index_col='DATE', parse_dates=True)
+import numpy as np
+counts = pd.read_csv('C:/Users/aanna/Desktop/TNM108/TNM108-Labs/Lab 2/FremontBridge.csv', index_col='Date', parse_dates=True)
+weather = pd.read_csv('C:/Users/aanna/Desktop/TNM108/TNM108-Labs/Lab 2/BicycleWeather.csv', index_col='DATE', parse_dates=True)
 
 # Compute the total number of bicycles crossing the bridge each day
 daily = counts.resample('d').sum()
@@ -31,7 +32,7 @@ daily['holiday'].fillna(0, inplace=True)
 # Add daylight hours
 def hours_of_daylight(date, axis=23.44, latitude = 47.61):
     # """Compute the hours of daylight for the given date"""
-    days = (date - pd.datetime(2000,12,21)).days
+    days = (date - dt.datetime(2000,12,21)).days
     m = (1. - np.tan(np.radians(latitude)) * np.tan(np.radians(axis) * np.cos(days * 2 * np.pi / 365.25)))
     return 24. * np.degrees(np.arccos(1 - np.clip(m, 0, 2))) / 180.
 
