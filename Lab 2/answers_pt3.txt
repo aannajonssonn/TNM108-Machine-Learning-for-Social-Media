@@ -1,0 +1,39 @@
+Lab 2 in the course TNM108 - Machine Learning for Social Media at Linköpings University 2022
+Anna Jonsson and Amanda Bigelius
+
+---- PART 3 ----
+
+1. What is the basic idea/intuition of SVM?
+
+Choosing 2 supportvectors representing the closest points in different clusters and draw
+lines between them. The line with most possible padding between itself and the points is
+the preferred one. 
+
+2. What can you do if the dataset is not linearly separable?
+
+Use kernels to raise the dimension of the dataset to a point where we can separate 
+it linerarly with a hyperplane. Or use a radial basis functions if that's a better fit. 
+
+3. Explain the concept of Soften Margins
+
+It allows for a certain amount of datapoints to be within the padding of the divider. 
++	Large values of the margin coefficient C gives a "hard" thin padding with few datapoints 
+	allowed in it. 
++	Low C's gives softer and wider padding that alows more datapoints in it. 
+
+4. What are the pros and cons of SVM?
+
+PROS:
++	Needs few support vectors --> compact model which takes up very little memory
++	The preciction phase is very fast once the model is trained
++	Works well with high dimensional data
++	Together with kernels it is a very versetile method that can adapt to many
+	types of data
+
+CONS:
+- Scaling is at worst O(N^3) or O(N^2) for efficient implementations, N = number of samples
+    Computional cost can be prohibitive
+- Results strongly depend on a suitable choice for the softening parameter C.
+    C should be chosen via cross-validation --> expensive for large datasets.
+- No direct probabilistic interpretation for the result. 
+

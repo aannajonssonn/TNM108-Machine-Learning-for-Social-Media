@@ -4,19 +4,46 @@ Anna Jonsson and Amanda Bigelius
 ---- PART 2 ----
 
 1. Why choosing a good value for k is important in KNN?
+    The amount of neighbours (k) decides the characteristics of the model.
+    The value k is directly correlated with the prediction, as well as how "heavy" the computations will be.
+    Low k: Low bias, but possily more noise / uneven distribution
+    High k: Higher bias, but more even distribution of labels
 
+    OBS: A "good k" varies from case to case!
 
 2. How can you decide a good value for k?
-
+    Mainly, test different values and compare the predicitions. 
+    There is some methods that can be used, e.g. the Elbow Method.
+    Generally: Use even number of k for odd numbers of attributes and vice versa
 
 3. Can you use KNN to classify non-linearly separable data?
+    
+    Interpretation 1: Yes, it maps non-linear data to linear values (from "Encoding data columns")
+    Interpretation 2: You can use the "kernel trick" to project non-linear data to linear axes
 
 
 4. Is KNN sensible to the number of features in the dataset?
-
+    Sensible with low amount of features, while not sensible for higher. 
+    Even though it's possible for a higher amount of features, the increase can lead to overfitting.
+    More dimensions --> our training data increases exponentially. SUPER expensive, SUPER slow! (Curse of dimensionality)
 
 5. Can you use KNN for a regression problem?
-
+    Yes, the predicted value of the new data point is computed by calculating the average of the k closest neighbour values.
 
 6. What are the Pros and Cons of KNN?
+    Pros: 
+    + Faster than other classification algorithms
+    + No need to train a model for generalization (instance-based learning algorithm)
+    + Useful for both linear and nonlinear data.
+    + Can be used with regression problems.
 
+    Cons:
+    - Slow and costly
+    - Might demand scaling for the different dimensions to fit (costly)
+    - Euclidean distance is sensitive to magnitude (gets heavier weighted)
+    - Not suited for high-dimensional datasets
+
+7. Improvements
+    - Normalizing the data on the same scale, generally [0, 1]
+    - Reduce the amount of dimensions in the data set, for large data sets. 
+    - Handle missing values in the data
