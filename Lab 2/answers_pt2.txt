@@ -1,0 +1,22 @@
+Lab 2 in the course TNM108 - Machine Learning for Social Media at Linköpings University 2022
+Anna Jonsson and Amanda Bigelius
+
+---- PART 2 ----
+
+1. Why choosing a good value for k is important in KNN?
+
+
+2. How can you decide a good value for k?
+
+
+3. Can you use KNN to classify non-linearly separable data?
+
+
+4. Is KNN sensible to the number of features in the dataset?
+
+
+5. Can you use KNN for a regression problem?
+
+
+6. What are the Pros and Cons of KNN?
+
