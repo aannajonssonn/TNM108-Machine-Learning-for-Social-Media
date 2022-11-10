@@ -1,0 +1,25 @@
+Lab 3 in the course TNM108 - Machine Learning for Social Media at Linköpings University 2022
+Anna Jonsson and Amanda Bigelius
+---- PART 1 ----
+
+1. Explain the concepts and Gaussian NB algorithm. 
+
+NB algorithm - Naive Bayes is a group of classification algorithm that is based on Bayes' theorem. 
+Bayes' provides a trustworthy way for calculating a conditional probability.
+The theorem allows us to update the prior belief of an event X given a new piece of information Y. 
+
+In the Gaussian NB the assumption is that data from each label is drawn from a simple Gaussian distribution.
+
+What are the pros and cons of the Gaussian NB algorithm?
+
+PROS:
++ Fast
++ Simple
++ Suitable for high-dimensional datasets / many categories with clear distinction
++ Few tunable parameters (easy to use)
++ Baseline for classification problems
+
+CONS:
+- Too simple for many cases
+- Assumes that the features are independent (Naive)
+- Isn't suitable if the data isn't drawn from Gaussian distribution.

@@ -1,0 +1,41 @@
+Lab 3 in the course TNM108 - Machine Learning for Social Media at Linköpings University 2022
+Anna Jonsson and Amanda Bigelius
+
+---- PART 2 ----
+
+1. Explain what the program does
+
+The program takes in a set of faces and a set of faces of independent people. 
+It then divides the faces of the datasets into upper and lower half of the face. 
+It then uses different estimators to fill in the lower half of the face. 
+
+Linear Regression: Fits a linear model with coefficients w to minimize the residual sum of squares between the observed targets in the dataset. 
+The targets are predicted by linear approximation.
+
+KNeighborsRegressor: The target is predicted by local interpolation of the targets associated of the nearest neighbors in the training sets. 
+
+RidgeCV: Ridge regression with built-in cross-validation. By default uses Leave-One-Out Cross-validation
+
+ExtraTreesRegressor: Implements a meta estimator that fits a number of randomized decision trees on various sub-samples of the dataset and uses 
+averaging to improve the predictive accuracy and control over-fitting.
+
+
+2. What is your interpretation of the final plot? Which algorithm has better performance
+in building the unknown parts of the face?
+
+We would say K-NN or extra-trees gives the best face completion. 
+Depending on what you think is most important. 
+
+Linear regression gives the worst face completion.
+
+
+3. Modify the code by adding the results of the following algorithms:
+
+Run code to see the images. 
+
+
+4. How could performance of random forest be improved?
+Instead of focusing on the entire face - we focus on smaller areas of the face/ features. 
+
+To make it less computionally heavy we can use integral images to calculate the sum of pixel values in an image or rectangular part of the image.
+    

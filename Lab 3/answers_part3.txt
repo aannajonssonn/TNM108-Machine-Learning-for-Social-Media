@@ -1,0 +1,23 @@
+Lab 3 in the course TNM108 - Machine Learning for Social Media at Linköpings University 2022
+Anna Jonsson and Amanda Bigelius
+
+---- PART 3 ----
+
+1. Modify the script in order to reshuffle the rows of the data set to randomize the cross
+validation folds before applying the cross validation.
+Run again the script but on the reshuffled data set and re-calculate the MSE and R2
+scores. Do you obtain a better performance?
+
+-	YES! There is a partition bias in the unshuffled data which gives a worse mean than if the data is shuffled.
+	I a training fold consist of only one category, the test data will get a bad result
+
+
+2. What happens if you do reshuffle and RFE? do you get better results than only reshuffling?
+
+- Some got better values while some got worse
+
+3. Find out if there are ML algorithms that perform better on the data cars.csv data set.
+
+- 
+
+
