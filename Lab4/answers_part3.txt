@@ -1,0 +1,23 @@
+Lab 4 in the course TNM108 - Machine Learning for Social Media at Linköpings University 2022
+Anna Jonsson and Amanda Bigelius
+---- PART 3 ----
+Hur funkar TextRank-algoritmen?
+
+Svar:	Traditionellt:	Frekvens för ord i början av meningar eller stycken
+		Andra metoder:	Grafbaserad rankning, tar hänsyn struktur på text istället för att bara
+						se det som en klump med ord. Ger djupare info.
+						Meningar blir datapunkter (vektorpositioner?) och relationerna blir linjerna mellan dem
+		
+		TextRank:		- Unsupervised algoritm
+						- Hittar keywords (som i del 1) och sparar meningar som datapunkter (vektorkoordinater) i graf
+						- Avståndet mellan datapunkter = likheten i meningarna
+						- Meningsvektorerna normeras innan man beräknar avståndet för att algoritmen inte få ett bias 
+							som föredrar långa meningar
+						- Använder PageRank(?) för att ranka de viktigaste meningarna
+						- Dessa printas sedan i kronologisk ordning för att skapa en sammanfattning
+
+Vad fick vi för resultat? (Visa)
+
+Hur bra / dålig är vår sammanfattning?
+
+Svar:	

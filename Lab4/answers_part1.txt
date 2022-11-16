@@ -1,0 +1,26 @@
+Lab 4 in the course TNM108 - Machine Learning for Social Media at Linköpings University 2022
+Anna Jonsson and Amanda Bigelius
+---- PART 1 ----
+
+Vad är TF-IDF (Text feature extraction - inverted document frequency)
+
+Svar:	Ett sätt att ta ut intressanta ord och jämföra texter / dokument mot varandra. Lagrar hur många gånger ord 
+		(ej trågika stoppord såsom "the", "so", "is" etc) förekommer i vektorer och vikar denna frekvent så att 
+		ovanliga ord med låg frekvens inte klassas som "oviktiga"
+
+Hur använder man TF-IDF för... :
+- Att jämföra likheter i dokument?
+
+Svar:	Eftersom hela dokumentet (texten) ligger i en vektor kan man jämföra likheten
+		genom att beräkna vinkeln mellan olika vektorer. Om vektorerna ligger åt samma håll
+		(inte nödvändigtvis lika långa) så innehåller texterna samma ord med lika många ord
+		relativt varandra. 
+		(en vektor med bara ordet "blå" 50 ggr kommer ligga åt samma håll
+		som en vektor med samma ord 500 ggr, men den andra kommer vara 10 ggr längre)
+
+- Att klassificera text
+
+Svar:	Eftersom vi har vektorer med många dimensioner kan man använda multinomial Naive Byes-klassificering
+		för att kategorisera texter.
+
+
