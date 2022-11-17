@@ -12,7 +12,7 @@ text = 'Neo-Nazism consists of post-World War II militant social or political mo
 # Define length of the summary as a proportion of the text
 print(summarize(text, ratio=0.2))
 
-# Create summary by specifying the lenth as number of words
+# Create summary by specifying the length as number of words
 summarize(text, words = 50)
 
 # Extract the most important words from the text

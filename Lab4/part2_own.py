@@ -8,7 +8,6 @@ import numpy as np
 from sklearn import metrics
 import sklearn
 from sklearn.datasets import load_files
-moviedir = 'C:/Users/aanna/Desktop/TNM108/Lab4/movie_reviews'
 import nltk
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.feature_extraction.text import TfidfTransformer
@@ -19,8 +18,10 @@ from sklearn.metrics import confusion_matrix
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.linear_model import SGDClassifier
 
+print('\n LETS START \n')
 
-# Load movie_reviews corpus data
+# Load movie_reviews data
+moviedir = 'C:/Users/aanna/Desktop/TNM108/Lab4/movie_reviews'
 movie = load_files(moviedir, shuffle=True)
 
 # Split data into training and test sets
@@ -30,8 +31,10 @@ movie_data_train, movie_data_test, movie_target_train, movie_target_test = train
 text_clf = Pipeline([('vect', CountVectorizer()), ('tfidf', TfidfTransformer()), ('clf', MultinomialNB())])
 
 # Create SVM classifier with a pipeline, using SGD as classifier
-#text_clf = Pipeline([('vect', CountVectorizer()), ('tfidf', TfidfTransformer()), ('clf', SGDClassifier(loss = 'hinge', penalty = 'l2', alpha=1e-3, random_state=42, max_iter=5, tol=None), )])
+# text_clf = Pipeline([('vect', CountVectorizer()), ('tfidf', TfidfTransformer()), ('clf', SGDClassifier(loss = 'hinge', penalty = 'l2', alpha=1e-3, random_state=42, max_iter=5, tol=None), )])
 # hinge gives a linear SVM, l2 is the regularisation parameter, alpha is the learning rate, max_iter is the number of iterations, tol is the stopping criterion
+
+# !!!!! SGD gave the best mean, but MultinomialNB gave the best classification.
 
 # The names vect, tfidf, and clf are arbitrary. We'll use them to perfom grid search for suitable hyperparameters.
 
@@ -49,9 +52,9 @@ print(metrics.classification_report(movie_target_test, predicted, target_names =
 print('\nConfusion matrix: ', metrics.confusion_matrix(movie_target_test, predicted))
 
 # Parameter tuning using grid search
-# parameters = {'vect__ngram_range': [(1, 1), (1, 2)], 'tfidf__use_idf': (True, False), 'clf__alpha': (1e-2, 1e-3),}
-parameters = {'vect__ngram_range': [(1, 1), (1, 2)], 'tfidf__use_idf': (True, False), 'clf__alpha': (1e-1, 1e-3),}
-#parameters = {'vect__ngram_range': [(1, 1), (1, 2)], 'tfidf__use_idf': (True, False), 'clf__alpha': (1e-1, 1e-2),}
+parameters = {'vect__ngram_range': [(1, 1), (1, 2)], 'tfidf__use_idf': (True, False), 'clf__alpha': (1e-2, 1e-3),}
+# parameters = {'vect__ngram_range': [(1, 1), (1, 2)], 'tfidf__use_idf': (True, False), 'clf__alpha': (1e-1, 1e-3),}
+# parameters = {'vect__ngram_range': [(1, 1), (1, 2)], 'tfidf__use_idf': (True, False), 'clf__alpha': (1e-1, 1e-2),}
 
 # Grid search will detect how many CPU cores we have at our disposal n_jobs = (-1)
 gs_clf = GridSearchCV(text_clf, parameters, cv=5, n_jobs=-1)
