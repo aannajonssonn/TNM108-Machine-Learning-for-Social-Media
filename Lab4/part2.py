@@ -92,7 +92,7 @@ newdocs = ["I have a rose and a lily.", "What a beautiful day."]
 newdocs_counts = fooVzer.transform(newdocs)
 newdocs_counts.toarray()
 
-# Again, transform using tfidf 
+# Again, transform using tfidf to sort data
 newdocs_tfidf = fooTfmer.transform(newdocs_counts)
 newdocs_tfidf.toarray()
 
