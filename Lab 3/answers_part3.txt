@@ -9,7 +9,7 @@ Run again the script but on the reshuffled data set and re-calculate the MSE and
 scores. Do you obtain a better performance?
 
 -	YES! There is a partition bias in the unshuffled data which gives a worse mean than if the data is shuffled.
-	I a training fold consist of only one category, the test data will get a bad result
+	If a training fold consist of only one category, the test data will get a bad result
 
 
 2. What happens if you do reshuffle and RFE? do you get better results than only reshuffling?

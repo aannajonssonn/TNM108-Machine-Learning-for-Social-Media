@@ -10,6 +10,8 @@ from sklearn import svm
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.linear_model import LogisticRegression
 from sklearn.neighbors import KNeighborsClassifier
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.tree import DecisionTreeRegressor
 from sklearn.metrics import f1_score
 from sklearn.metrics import precision_score
 from sklearn.metrics import recall_score
@@ -72,9 +74,26 @@ clf = KNeighborsClassifier(weights = 'distance', n_neighbors=5)
 y_pred = cross_val_predict(clf, x, y, cv=cv)
 CalcMeasures(method, y_pred, y)
 
+method = 'random forest'
+clf = RandomForestClassifier(n_estimators=90, max_depth=None, min_samples_split=2, random_state=0)
+y_pred = cross_val_predict(clf, x, y, cv=cv)
+CalcMeasures(method, y_pred, y)
+
+method = 'decision tree'
+clf = DecisionTreeRegressor(random_state=0)
+y_pred = cross_val_predict(clf, x,y, cv=cv)
+CalcMeasures(method,y_pred,y)
+
+method = 'rbf support vector machine'
+clf = svm.SVC(kernel='rbf',C=50, gamma="auto")
+y_pred = cross_val_predict(clf, x,y, cv=cv)
+CalcMeasures(method,y_pred,y)
+
+
 # Measure values are stored in the data frames
 
 # Calculate the number of samples in each class
 labels_counts = df[6].value_counts()
 pd.Series(map6).map(labels_counts)
 
+print(df_f1)

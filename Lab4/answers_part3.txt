@@ -1,6 +1,7 @@
 Lab 4 in the course TNM108 - Machine Learning for Social Media at Linköpings University 2022
 Anna Jonsson and Amanda Bigelius
 ---- PART 3 ----
+
 Hur funkar TextRank-algoritmen?
 
 Svar:	Traditionellt:	Frekvens för ord i början av meningar eller stycken
@@ -21,3 +22,8 @@ Vad fick vi för resultat? (Visa)
 Hur bra / dålig är vår sammanfattning?
 
 Svar:	
+
+
+what is gridsearch
+graph, nodes, edges, sentences and similarities, cos similarity = weight, 
+

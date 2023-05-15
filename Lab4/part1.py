@@ -13,6 +13,8 @@ from sklearn.naive_bayes import MultinomialNB
 from sklearn.metrics.pairwise import cosine_similarity
 import math
 
+print('\n LETS START PART 1 \n')
+
 # Vector space conversion
 d1 = "The sky is blue." 
 d2 = "The sun is bright." 
@@ -117,4 +119,4 @@ predicted = model.predict(X_new_tfidf)
 for doc, category in zip(docs_new, predicted):
     print('%r => %s' % (doc, train.target_names[category]))
 
-print('\n THE END \n')
+print('\n THE END OF PART 1\n')

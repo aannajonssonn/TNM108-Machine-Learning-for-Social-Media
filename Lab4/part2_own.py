@@ -18,7 +18,7 @@ from sklearn.metrics import confusion_matrix
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.linear_model import SGDClassifier
 
-print('\n LETS START \n')
+print('\n LETS START PART 2 \n')
 
 # Load movie_reviews data
 moviedir = 'C:/Users/aanna/Desktop/TNM108/Lab4/movie_reviews'
@@ -84,5 +84,5 @@ predicted = gs_clf.predict(reviews_new)
 for review, category in zip(reviews_new, predicted):
     print('\n %r => %s' % (review, movie.target_names[category]))
 
-print('\n THE END\n')
+print('\n THE END OF PART 2\n')
 
